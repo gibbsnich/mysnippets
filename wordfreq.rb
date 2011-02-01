@@ -15,11 +15,7 @@ class DocMatrix
                 # for this measure only
                 @word_count = @content.gsub(/[^A-Za-z ]/, '').split(' ').length         
         end
-        
-        def each_word_entry
-                @values.each { |k,v| yield(k,v) }
-        end
-        
+                
         def get_index
                 @word_sum.to_f / @word_count.to_f
         end
@@ -42,12 +38,9 @@ def run_all
 
 
         Dir["new_data_01/*/*"].each { |pa| 
-                #puts pa
-                #idx = DocMatrix.new(IO.read(pa), dict).get_index 
-                #puts "#{pa};#{idx}"            
                 puts "#{pa}"
                 DocMatrix.new(IO.read(pa), dict).print_metrics
-                #puts ''
+                puts ''
         }
 end
 
